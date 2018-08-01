@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Records] (
+    [Id]         INT            IDENTITY (1, 1) NOT NULL,
+    [Text]       NVARCHAR (MAX) NOT NULL,
+    [Author]     NVARCHAR (50)  NOT NULL,
+    [RecordDate] DATETIME       NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+INSERT INTO [Records] ([Text], [Author], [RecordDate]) VALUES ('Hello', 'John', '1/1/2001')
