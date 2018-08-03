@@ -6,10 +6,18 @@ namespace RepositoryADO.NET
 {
     public class Record
     {
-        public int Id { set; get; }
-        public string Text { set; get; }
-        public string Author { set; get; }
-        public DateTime RecordDate { set; get; }
+        public Record(int id, string text, string author, DateTime recoredDate)
+        {
+            Id = id;
+            Text = text;
+            Author = author;
+            RecordDate = recoredDate;
+        }
+
+        public int Id { get; }
+        public string Text { get; set; }
+        public string Author { get; set; }
+        public DateTime RecordDate { get; set; }
 
         public override string ToString()
         {

@@ -25,18 +25,19 @@ namespace RepositoryADO.NET
             {
                 records = UpdateData(repo);
                 PrintRecords();
-                Console.WriteLine("Create Record");
+                Console.WriteLine("Create a record");
                 repo.CreateRecord(new Record
-                {
-                    Author = "Ronald",
-                    Text = "Bye!",
-                    RecordDate = DateTime.Now
-                }).GetAwaiter().GetResult();
+                (
+                    id: 0,
+                    author: "Ronald",
+                    text: "Bye!",
+                    recoredDate: DateTime.Now
+                )).GetAwaiter().GetResult();
 
                 records = UpdateData(repo);
                 PrintRecords();
 
-                Console.WriteLine("Delete Record");
+                Console.WriteLine("Delete a record");
                 repo.DeleteRecord(records.FirstOrDefault()).GetAwaiter().GetResult();
                 records = UpdateData(repo);
 
@@ -46,7 +47,7 @@ namespace RepositoryADO.NET
                 if (!(lastRecord is null))
                     lastRecord.Text = "I'm a SQL!!!";
 
-                Console.WriteLine("Update Record");
+                Console.WriteLine("Update a record");
                 repo.UpdateRecord(lastRecord).GetAwaiter().GetResult();
                 records = UpdateData(repo);
                 PrintRecords();

@@ -13,8 +13,8 @@ namespace RepositoryADO.NET
         private readonly SqlConnection _connection;
         private readonly string _tableName = "Records";
 
-        public Repository(string conStr) =>
-            _connection = new SqlConnection(conStr ?? throw new ArgumentNullException(nameof(conStr)));
+        public Repository(string conStr) : this(new SqlConnection(conStr ?? throw new ArgumentNullException(nameof(conStr))))
+        { }
 
         public Repository(SqlConnection connection) =>
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
@@ -38,12 +38,12 @@ namespace RepositoryADO.NET
                     while (await reader.ReadAsync())
                     {
                         result.Add(new Record
-                        {
-                            Id = (int)reader["Id"],
-                            Text = (string)reader["Text"],
-                            Author = (string)reader["Author"],
-                            RecordDate = (DateTime)reader["RecordDate"],
-                        });
+                        (
+                            id: (int) reader["Id"],
+                            text: (string) reader["Text"],
+                            author: (string) reader["Author"],
+                            recoredDate: (DateTime)reader["RecordDate"]
+                        ));
                     }
                 }
 
